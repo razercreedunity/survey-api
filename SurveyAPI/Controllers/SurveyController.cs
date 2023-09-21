@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using YourNamespace.DTO;
+using SurveyAPI.DTO;
 
 namespace SurveyAPI.Controllers
 {
@@ -58,7 +58,7 @@ namespace SurveyAPI.Controllers
                 var survey = new Survey
                 {
                     SubmitTime = malaysiaTime, // Set the submission time to Malaysia time
-                                               // You can add more properties to the Survey model as needed
+                                               
                 };
 
                 _context.Surveys.Add(survey);
@@ -70,7 +70,7 @@ namespace SurveyAPI.Controllers
                     var surveyAnswer = new SurveyAnswer
                     {
                         SurveyId = survey.Id,
-                        SurveyQuestionId = answerData.SurveyQuestionId, // Assuming you have QuestionId property in AnswerData
+                        SurveyQuestionId = answerData.SurveyQuestionId,
                         Answer = answerData.Answer,
                     };
                     _context.SurveyAnswers.Add(surveyAnswer);
@@ -98,7 +98,7 @@ namespace SurveyAPI.Controllers
                 }
 
                 // Update the existing question properties with the values from the updatedQuestion.
-                existingQuestion.Question = updatedQuestion.Question; // You can update other properties here if needed.
+                existingQuestion.Question = updatedQuestion.Question; 
 
                 _context.SurveyQuestions.Update(existingQuestion);
                 await _context.SaveChangesAsync();
@@ -157,7 +157,7 @@ namespace SurveyAPI.Controllers
                     Id = entry.Answer.Id,
                     SubmitTime = entry.Survey.SubmitTime,
                     Answers = entry.Answer.Answer,
-                    // Map other properties as needed
+
                 }).ToList();
 
                 return Ok(submissionHistoryDTO);

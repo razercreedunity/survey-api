@@ -8,7 +8,6 @@ public class Survey
 {
     public int Id { get; set; }
     public DateTime SubmitTime { get; set; }
-    // Add more properties as needed
 }
 
 public class SurveyAnswer
